@@ -1,0 +1,197 @@
+/* 仅 dev 预览页使用，不进入构建产物。
+   :root 里的 --ya-* 与宿主 shell.css 保持一致，插件样式在浏览器里才能看到真机效果。 */
+
+/* 变量表与宿主 shell.css 逐条对齐（含浅色那份），插件在浏览器里预览
+   才能同时看到深/浅两套效果。改宿主配色后这里也要跟着改。 */
+:root {
+  color-scheme: dark;
+  --ya-bg: rgba(26, 26, 31, 0.97);
+  --ya-surface: rgba(38, 38, 44, 0.98);
+  --ya-fg: #e8e8ea;
+  --ya-fg-strong: #ffffff;
+  --ya-sub: #88888e;
+  --ya-muted: #66666c;
+  --ya-group: #6a6a70;
+  --ya-placeholder: #5a5a60;
+  --ya-accent: #4da3ff;
+  --ya-sel: rgba(77, 163, 255, 0.25);
+  --ya-hover: rgba(255, 255, 255, 0.08);
+  --ya-border: rgba(255, 255, 255, 0.08);
+  --ya-border-strong: rgba(255, 255, 255, 0.1);
+  --ya-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --ya-ring: rgba(255, 255, 255, 0.25);
+  --ya-page-bg: #14141a; /* dev 页自己的背景，宿主没有 */
+  --ya-radius: 8px;
+  --ya-font: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --ya-bg: rgba(246, 246, 248, 0.98);
+    --ya-surface: rgba(255, 255, 255, 0.98);
+    --ya-fg: #1d1d20;
+    --ya-fg-strong: #0d0d10;
+    --ya-sub: #56565c;
+    --ya-muted: #6e6e75;
+    --ya-group: #7a7a80;
+    --ya-placeholder: #9a9aa2;
+    --ya-accent: #0a6cff;
+    --ya-sel: rgba(10, 108, 255, 0.16);
+    --ya-hover: rgba(0, 0, 0, 0.06);
+    --ya-border: rgba(0, 0, 0, 0.1);
+    --ya-border-strong: rgba(0, 0, 0, 0.14);
+    --ya-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    --ya-ring: rgba(0, 0, 0, 0.2);
+    --ya-page-bg: #eceef1;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--ya-font);
+  background: var(--ya-page-bg);
+  color: var(--ya-fg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+#root {
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  font-size: 13px;
+  color: var(--ya-muted);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#panel {
+  background: var(--ya-bg);
+  border: 1px solid var(--ya-border-strong);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#searchbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ya-border);
+}
+
+#logo { font-size: 18px; }
+
+#input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--ya-fg-strong);
+  font-size: 17px;
+  font-family: inherit;
+}
+
+#input::placeholder { color: var(--ya-muted); }
+
+#pluginView {
+  padding: 12px 16px;
+  overflow: auto;
+}
+
+.mock-hint {
+  padding: 40px 8px;
+  text-align: center;
+  color: var(--ya-muted);
+  font-size: 14px;
+}
+
+.mock-hint b { color: var(--ya-accent); }
+
+/* provider 结果行：复刻宿主主列表的外观（标题 + 副标题 + 可选色块） */
+.mock-provide-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.mock-provide-row:hover { background: var(--ya-hover, rgba(127, 127, 127, 0.12)); }
+.mock-provide-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--ya-border);
+  flex: 0 0 auto;
+}
+.mock-provide-title { font-size: 14px; white-space: nowrap; }
+.mock-provide-sub {
+  font-size: 12px;
+  color: var(--ya-muted);
+  margin-left: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-top: 1px solid var(--ya-border);
+  font-size: 12px;
+  color: var(--ya-muted);
+}
+
+#logpanel {
+  margin-top: 16px;
+  border: 1px solid var(--ya-border);
+  border-radius: var(--ya-radius);
+  background: var(--ya-hover);
+}
+
+#logpanel summary {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ya-sub);
+}
+
+#log {
+  list-style: none;
+  max-height: 220px;
+  overflow: auto;
+  padding: 0 14px 12px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  color: var(--ya-sub);
+}
+
+#log li { padding: 2px 0; border-bottom: 1px dashed var(--ya-border); }
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ya-surface);
+  border: 1px solid var(--ya-border);
+  color: var(--ya-fg);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

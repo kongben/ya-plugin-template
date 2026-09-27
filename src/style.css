@@ -1,0 +1,44 @@
+/* 宿主会把每条选择器加上 .ya-plugin-<id> 作用域，所以这里可以大胆写，
+   不会污染宿主界面。颜色一律用 --ya-* 变量，跟随宿主主题。 */
+
+.qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 4px 8px;
+}
+
+.qr-img {
+  width: 220px;
+  height: 220px;
+  background: #fff;
+  border-radius: var(--ya-radius);
+  padding: 8px;
+}
+
+.qr-text {
+  max-width: 460px;
+  font-size: 13px;
+  color: var(--ya-sub);
+  text-align: center;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.qr-tip {
+  font-size: 12px;
+  color: var(--ya-muted);
+}
+
+.qr-empty,
+.qr-error {
+  padding: 40px 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ya-muted);
+}
+
+.qr-error {
+  color: #ff6b6b;
+}

@@ -1,0 +1,10 @@
+{
+  "id": "qrcode",
+  "keyword": "qr",
+  "keywords": ["qr", "qrcode"],
+  "version": "1.0.0",
+  "icon": "🔳",
+  "input": "visible",
+  "name": { "en": "QR Code", "zh": "二维码" },
+  "description": { "en": "Generate a QR code from text", "zh": "把文字生成二维码" }
+}

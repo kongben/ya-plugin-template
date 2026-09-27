@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ya 插件预览</title>
+  </head>
+  <body>
+    <div id="root">
+      <div id="title">
+        <span>ya 插件 dev 预览（模拟宿主外壳）</span>
+        <span id="status">搜索模式</span>
+      </div>
+
+      <div id="panel">
+        <div id="searchbar">
+          <span id="logo">🦆</span>
+          <input id="input" autocomplete="off" spellcheck="false" />
+        </div>
+        <!-- 宿主里的插件容器就是 #pluginView，插件 CSS 作用域 class 会加在它上面 -->
+        <div id="pluginView"></div>
+        <div id="footer">
+          <span>Esc 退回搜索模式</span>
+          <span>Enter / 点击由插件自己处理</span>
+        </div>
+      </div>
+
+      <details id="logpanel" open>
+        <summary>宿主调用日志（api.* 的每一次调用）</summary>
+        <ul id="log"></ul>
+      </details>
+    </div>
+
+    <div id="toast"></div>
+
+    <script type="module" src="/src/dev/index.ts"></script>
+  </body>
+</html>

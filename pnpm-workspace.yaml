@@ -1,0 +1,4 @@
+# pnpm 12+：包管理设置放在这里（package.json 的 "pnpm" 字段已废弃）
+# esbuild 需要跑 postinstall 下载平台二进制；不批准的话 vite 装完也跑不起来
+allowBuilds:
+  esbuild: true
